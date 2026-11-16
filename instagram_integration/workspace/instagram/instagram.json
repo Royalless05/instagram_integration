@@ -1,0 +1,41 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"ig_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Instagram</b></span>\",\"col\":12}},{\"id\":\"ig_sc_post\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instagram Post\",\"col\":3}},{\"id\":\"ig_sc_settings\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Instagram Settings\",\"col\":3}}]",
+ "creation": "2026-11-16 18:40:00.000000",
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Instagram",
+ "links": [],
+ "modified": "2026-11-16 18:40:00.000000",
+ "modified_by": "Administrator",
+ "module": "Instagram Integration",
+ "name": "Instagram",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 99.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Instagram Post",
+   "link_to": "Instagram Post",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "",
+   "label": "Instagram Settings",
+   "link_to": "Instagram Settings",
+   "type": "DocType"
+  }
+ ],
+ "title": "Instagram"
+}

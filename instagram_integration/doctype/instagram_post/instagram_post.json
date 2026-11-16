@@ -1,0 +1,142 @@
+{
+ "actions": [],
+ "autoname": "format:IGP-{#####}",
+ "creation": "2026-11-16 18:40:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "post_type",
+  "status",
+  "column_break_1",
+  "scheduled_at",
+  "content_section",
+  "media",
+  "caption",
+  "result_section",
+  "ig_media_id",
+  "permalink",
+  "error_log"
+ ],
+ "fields": [
+  {
+   "default": "Post",
+   "fieldname": "post_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Post Type",
+   "options": "Post\nReel\nStory",
+   "read_only_depends_on": "eval:doc.status=='Published'",
+   "reqd": 1
+  },
+  {
+   "default": "Open",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "no_copy": 1,
+   "options": "Open\nScheduled\nPublishing\nPublished\nOn Hold",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Leave empty to publish manually. Otherwise it is published automatically (checked every 5 minutes).",
+   "fieldname": "scheduled_at",
+   "fieldtype": "Datetime",
+   "label": "Schedule At",
+   "no_copy": 1,
+   "read_only_depends_on": "eval:doc.status=='Published'"
+  },
+  {
+   "fieldname": "content_section",
+   "fieldtype": "Section Break",
+   "label": "Content"
+  },
+  {
+   "description": "Post: JPEG image. Reel: MP4/MOV video. Story: JPEG image or MP4/MOV video. The file must be public.",
+   "fieldname": "media",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Media",
+   "read_only_depends_on": "eval:doc.status=='Published'",
+   "reqd": 1
+  },
+  {
+   "description": "Stories ignore the caption.",
+   "fieldname": "caption",
+   "fieldtype": "Small Text",
+   "label": "Caption",
+   "read_only_depends_on": "eval:doc.status=='Published'"
+  },
+  {
+   "fieldname": "result_section",
+   "fieldtype": "Section Break",
+   "label": "Result"
+  },
+  {
+   "fieldname": "ig_media_id",
+   "fieldtype": "Data",
+   "label": "Instagram Media ID",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "permalink",
+   "fieldtype": "Data",
+   "label": "Permalink",
+   "no_copy": 1,
+   "options": "URL",
+   "read_only": 1
+  },
+  {
+   "fieldname": "error_log",
+   "fieldtype": "Long Text",
+   "label": "Error Log",
+   "no_copy": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-11-16 18:40:00.000000",
+ "modified_by": "Administrator",
+ "module": "Instagram Integration",
+ "name": "Instagram Post",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
