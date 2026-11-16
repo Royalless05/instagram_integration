@@ -5,6 +5,18 @@ app_description = "Publish Instagram posts, reels and stories directly from ERPN
 app_email = "you@example.com"
 app_license = "MIT"
 
+# Apps screen
+# -----------
+# Without this entry the app is installed but does not appear on the apps screen / app switcher.
+add_to_apps_screen = [
+	{
+		"name": "instagram_integration",
+		"logo": "/assets/instagram_integration/images/logo.svg",
+		"title": "Instagram",
+		"route": "/app/instagram",
+	}
+]
+
 # Scheduled Tasks
 # ---------------
 scheduler_events = {
