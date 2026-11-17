@@ -121,6 +121,16 @@ class InstagramClient:
 	def publish_container(self, container_id: str) -> str:
 		return self._request("POST", f"{self.ig_user_id}/media_publish", {"creation_id": container_id})["id"]
 
+	def delete_media(self, media_id: str):
+		"""Permanently delete a published media item.
+
+		Uses Meta's media deletion endpoint (announced Dec 2025). Raises InstagramError
+		with Meta's message if the API refuses.
+		"""
+		result = self._request("DELETE", media_id)
+		if result.get("success") is False:
+			raise InstagramError("Instagram did not confirm the deletion.")
+
 	def get_permalink(self, media_id: str) -> str | None:
 		try:
 			return self._request("GET", media_id, {"fields": "permalink"}).get("permalink")

@@ -8,6 +8,7 @@ from instagram_integration.api import (
 	IMAGE_EXTENSIONS,
 	VIDEO_EXTENSIONS,
 	InstagramClient,
+	InstagramError,
 )
 
 PUBLISHABLE_STATES = ("Open", "Scheduled", "On Hold")
@@ -93,3 +94,22 @@ def publish_now(name: str):
 
 	queue_publish(name)
 	return {"status": "queued"}
+
+
+@frappe.whitelist()
+def delete_from_instagram(name: str):
+	doc = frappe.get_doc("Instagram Post", name)
+	doc.check_permission("write")
+
+	if doc.status != "Published" or not doc.ig_media_id:
+		frappe.throw(_("Only published posts can be deleted from Instagram."))
+
+	try:
+		InstagramClient().delete_media(doc.ig_media_id)
+	except InstagramError as e:
+		frappe.throw(
+			_("{0}<br><br>If Instagram does not allow deleting this post through the API, delete it in the Instagram app instead.").format(str(e))
+		)
+
+	doc.db_set({"status": "Deleted", "permalink": ""})
+	return {"status": "deleted"}

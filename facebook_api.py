@@ -64,6 +64,8 @@ class FacebookClient:
 
 		if method == "GET":
 			response = requests.get(url, params=payload, timeout=timeout)
+		elif method == "DELETE":
+			response = requests.delete(url, params=payload, timeout=timeout)
 		else:
 			response = requests.post(url, data=payload, timeout=timeout)
 		return raise_for_graph_error(response)
@@ -135,6 +137,12 @@ class FacebookClient:
 			if state == "error":
 				raise GraphAPIError("Facebook could not process the video.")
 			time.sleep(delay)
+
+	def delete_object(self, object_id: str):
+		"""Permanently delete a Page post, photo or video."""
+		result = self._request("DELETE", object_id)
+		if not result.get("success"):
+			raise GraphAPIError("Facebook did not confirm the deletion.")
 
 	def get_permalink(self, object_id: str) -> str | None:
 		try:

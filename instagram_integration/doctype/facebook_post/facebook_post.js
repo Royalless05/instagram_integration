@@ -34,8 +34,33 @@ frappe.ui.form.on("Facebook Post", {
 			});
 		}
 
+		if (frm.doc.status === "Published" && frm.doc.fb_object_id) {
+			frm.add_custom_button(
+				__("Delete from Facebook"),
+				() => {
+					frappe.confirm(
+						__("This permanently removes the post from Facebook. Continue?"),
+						() => {
+							frappe.call({
+								method: "instagram_integration.instagram_integration.doctype.facebook_post.facebook_post.delete_from_facebook",
+								args: { name: frm.doc.name },
+								freeze: true,
+								freeze_message: __("Deleting..."),
+								callback() {
+									frappe.show_alert({ message: __("Deleted from Facebook"), indicator: "green" });
+									frm.reload_doc();
+								},
+							});
+						}
+					);
+				},
+				__("Actions")
+			);
+		}
+
 		const colors = {
 			Open: "gray",
+			Deleted: "gray",
 			Scheduled: "blue",
 			Publishing: "orange",
 			Published: "green",

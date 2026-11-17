@@ -8,6 +8,7 @@ from instagram_integration.facebook_api import (
 	IMAGE_EXTENSIONS,
 	VIDEO_EXTENSIONS,
 	FacebookClient,
+	GraphAPIError,
 )
 
 PUBLISHABLE_STATES = ("Open", "Scheduled", "On Hold")
@@ -96,3 +97,20 @@ def publish_now(name: str):
 
 	queue_publish(name)
 	return {"status": "queued"}
+
+
+@frappe.whitelist()
+def delete_from_facebook(name: str):
+	doc = frappe.get_doc("Facebook Post", name)
+	doc.check_permission("write")
+
+	if doc.status != "Published" or not doc.fb_object_id:
+		frappe.throw(_("Only published posts can be deleted from Facebook."))
+
+	try:
+		FacebookClient().delete_object(doc.fb_object_id)
+	except GraphAPIError as e:
+		frappe.throw(str(e))
+
+	doc.db_set({"status": "Deleted", "permalink": ""})
+	return {"status": "deleted"}

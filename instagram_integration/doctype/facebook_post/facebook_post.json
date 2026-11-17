@@ -39,7 +39,7 @@
    "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
-   "options": "Open\nScheduled\nPublishing\nPublished\nOn Hold",
+   "options": "Open\nScheduled\nPublishing\nPublished\nOn Hold\nDeleted",
    "read_only": 1
   },
   {
