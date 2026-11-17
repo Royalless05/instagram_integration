@@ -12,6 +12,7 @@ frappe.ui.form.on("Facebook Settings", {
 						{
 							fieldname: "user_token",
 							fieldtype: "Password",
+							length: 2000, // access tokens are longer than the default 140-character limit
 							label: __("User Access Token"),
 							reqd: 1,
 							description: __(
