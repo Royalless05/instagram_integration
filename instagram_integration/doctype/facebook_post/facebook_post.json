@@ -1,0 +1,162 @@
+{
+ "actions": [],
+ "autoname": "format:FBP-{#####}",
+ "creation": "2026-11-17 06:50:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "post_type",
+  "status",
+  "column_break_1",
+  "scheduled_at",
+  "content_section",
+  "message",
+  "link",
+  "media",
+  "video_title",
+  "result_section",
+  "fb_object_id",
+  "permalink",
+  "error_log"
+ ],
+ "fields": [
+  {
+   "default": "Photo",
+   "fieldname": "post_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Post Type",
+   "options": "Text\nPhoto\nVideo",
+   "read_only_depends_on": "eval:doc.status=='Published'",
+   "reqd": 1
+  },
+  {
+   "default": "Open",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "no_copy": 1,
+   "options": "Open\nScheduled\nPublishing\nPublished\nOn Hold",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Leave empty to publish manually. Otherwise it is published automatically (checked every 5 minutes).",
+   "fieldname": "scheduled_at",
+   "fieldtype": "Datetime",
+   "label": "Schedule At",
+   "no_copy": 1,
+   "read_only_depends_on": "eval:doc.status=='Published'"
+  },
+  {
+   "fieldname": "content_section",
+   "fieldtype": "Section Break",
+   "label": "Content"
+  },
+  {
+   "description": "Text post: the post text. Photo: the caption. Video: the description.",
+   "fieldname": "message",
+   "fieldtype": "Small Text",
+   "label": "Message",
+   "mandatory_depends_on": "eval:doc.post_type=='Text' && !doc.link",
+   "read_only_depends_on": "eval:doc.status=='Published'"
+  },
+  {
+   "depends_on": "eval:doc.post_type=='Text'",
+   "description": "Optional. Facebook shows a link preview.",
+   "fieldname": "link",
+   "fieldtype": "Data",
+   "label": "Link",
+   "options": "URL",
+   "read_only_depends_on": "eval:doc.status=='Published'"
+  },
+  {
+   "depends_on": "eval:doc.post_type=='Photo' || doc.post_type=='Video'",
+   "description": "Photo: JPG, PNG, GIF, BMP or TIFF. Video: MP4 or MOV. The file must be public.",
+   "fieldname": "media",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Media",
+   "mandatory_depends_on": "eval:doc.post_type=='Photo' || doc.post_type=='Video'",
+   "read_only_depends_on": "eval:doc.status=='Published'"
+  },
+  {
+   "depends_on": "eval:doc.post_type=='Video'",
+   "fieldname": "video_title",
+   "fieldtype": "Data",
+   "label": "Video Title",
+   "read_only_depends_on": "eval:doc.status=='Published'"
+  },
+  {
+   "fieldname": "result_section",
+   "fieldtype": "Section Break",
+   "label": "Result"
+  },
+  {
+   "fieldname": "fb_object_id",
+   "fieldtype": "Data",
+   "label": "Facebook Post ID",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "permalink",
+   "fieldtype": "Data",
+   "label": "Permalink",
+   "no_copy": 1,
+   "options": "URL",
+   "read_only": 1
+  },
+  {
+   "fieldname": "error_log",
+   "fieldtype": "Long Text",
+   "label": "Error Log",
+   "no_copy": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-11-17 06:50:00.000000",
+ "modified_by": "Administrator",
+ "module": "Instagram Integration",
+ "name": "Facebook Post",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -1,0 +1,41 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"fb_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Facebook</b></span>\",\"col\":12}},{\"id\":\"fb_sc_post\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Facebook Post\",\"col\":3}},{\"id\":\"fb_sc_settings\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Facebook Settings\",\"col\":3}}]",
+ "creation": "2026-11-17 06:50:00.000000",
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Facebook",
+ "links": [],
+ "modified": "2026-11-17 06:50:00.000000",
+ "modified_by": "Administrator",
+ "module": "Instagram Integration",
+ "name": "Facebook",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 100.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Facebook Post",
+   "link_to": "Facebook Post",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "",
+   "label": "Facebook Settings",
+   "link_to": "Facebook Settings",
+   "type": "DocType"
+  }
+ ],
+ "title": "Facebook"
+}

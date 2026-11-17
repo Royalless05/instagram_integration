@@ -24,7 +24,7 @@ def _api_base(settings) -> str:
 	return f"https://graph.facebook.com/{settings.api_version or DEFAULT_API_VERSION}"
 
 
-def _raise_for_graph_error(response):
+def raise_for_graph_error(response):
 	try:
 		payload = response.json()
 	except ValueError:
@@ -34,7 +34,7 @@ def _raise_for_graph_error(response):
 		err = payload.get("error", {})
 		msg = err.get("error_user_msg") or err.get("message") or response.text[:500]
 		code = err.get("code")
-		raise InstagramError(f"Instagram API error{f' ({code})' if code else ''}: {msg}")
+		raise InstagramError(f"Meta API error{f' ({code})' if code else ''}: {msg}")
 
 	return payload
 
@@ -62,7 +62,7 @@ class InstagramClient:
 		response = requests.request(
 			method, f"{self.base}/{path.lstrip('/')}", params=params, timeout=REQUEST_TIMEOUT
 		)
-		return _raise_for_graph_error(response)
+		return raise_for_graph_error(response)
 
 	# -- media helpers ---------------------------------------------------
 	def public_media_url(self, file_url: str) -> str:
@@ -148,7 +148,7 @@ def exchange_token() -> dict:
 		},
 		timeout=REQUEST_TIMEOUT,
 	)
-	data = _raise_for_graph_error(response)
+	data = raise_for_graph_error(response)
 
 	settings.access_token = data["access_token"]
 	expires_in = data.get("expires_in")
